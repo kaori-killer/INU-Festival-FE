@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import FestivalSentenceItem from './FestivalSentenceItem';
 import useFetchSentence from '../../hooks/useFetchSentence';
 import Word from './Word';
 
 import SkeletonFestivalSentence from '../Loading/SkeletonFestivalSentenceItem';
 
-const FestivalSentenceBox = styled.div``;
+const FestivalSentenceBox = styled.div`
+`;
 
-const SentenceBox = styled.ul`
+const SentenceBox = styled.div`
   margin-top: 75px;
   background-color: #f8f8fa;
   width: 100%;
@@ -20,6 +23,7 @@ const SentenceBox = styled.ul`
 
 export default function FestivalSentence() {
   const { data } = useFetchSentence();
+
   return (
     <>
       <FestivalSentenceBox>
@@ -27,12 +31,31 @@ export default function FestivalSentence() {
           {data === undefined ? (
             <SkeletonFestivalSentence />
           ) : (
-            data.shouts.map((sentence) => (
-              <FestivalSentenceItem
-                key={sentence.id}
-                sentence={sentence}
-              />
-            ))
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={15}
+              direction="vertical"
+              loop
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              navigation
+              className="mySwiper"
+            >
+              {data.shouts.map((sentence) => (
+                <SwiperSlide
+                  key={sentence.id}
+                >
+                  <FestivalSentenceItem
+                    sentence={sentence}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
           )}
         </SentenceBox>
       </FestivalSentenceBox>
