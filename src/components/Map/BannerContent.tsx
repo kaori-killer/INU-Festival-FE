@@ -1,8 +1,5 @@
-// import { useState } from 'react';
-
 import { styled } from 'styled-components';
 
-// import { useBottomSheet } from '../../hooks/useBottomSheet';
 import BoothList from './BoothList';
 import Booth from '../../types/Booth';
 import useFetchCategories from '../../hooks/useFetchCategories';
