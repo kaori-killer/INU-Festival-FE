@@ -18,6 +18,7 @@ const PreButton = styled.div`
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+  overflow: scroll;
 `;
 
 const BoothContainer = styled.div`
