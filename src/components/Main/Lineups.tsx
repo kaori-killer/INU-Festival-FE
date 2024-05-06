@@ -61,7 +61,7 @@ export default function Lineups() {
       <BannerContainer onClick={handleClick}>
         <LineUp
           perView={perview}
-          spaceBetween={25}
+          spaceBetween={12}
         />
       </BannerContainer>
     </>
