@@ -11,7 +11,7 @@ const Container = styled.div`
     height: 100vh;
     max-width: 600px;
     width: 100%;
-    cursor: grab;
+    /* cursor: grab; */
 `;
 
 const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
