@@ -31,6 +31,26 @@ const booths = [
     markerImage: 'markerBlue',
     boothImgs: [],
   },
+  {
+    id: '4',
+    name: 'V.D.E STORE',
+    category: '비주점',
+    department: '',
+    description: '현수막 전용 문구: 이걸 안사? 진짜 안사? 정말 안사? 이쁜데? 멋진데? 부스 홍보 내용 : 커스텀 의류, 키링, 머리띠, 악세서리 등 자체 제작한 개성 있는 패션 아이템 판매 부스.',
+    liked: 0,
+    markerImage: 'markerBlue',
+    boothImgs: [],
+  },
+  {
+    id: '5',
+    name: 'V.D.E STORE',
+    category: '비주점',
+    department: '',
+    description: '현수막 전용 문구: 이걸 안사? 진짜 안사? 정말 안사? 이쁜데? 멋진데? 부스 홍보 내용 : 커스텀 의류, 키링, 머리띠, 악세서리 등 자체 제작한 개성 있는 패션 아이템 판매 부스.',
+    liked: 0,
+    markerImage: 'markerBlue',
+    boothImgs: [],
+  },
 ];
 
 console.log('hello');
