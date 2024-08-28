@@ -11,9 +11,8 @@ import App from './App';
 
 async function deferRender() {
   if (process.env.NODE_ENV === 'development') {
-    return;
+    await initMockAPI();
   }
-  await initMockAPI();
 }
 
 deferRender().then(() => {

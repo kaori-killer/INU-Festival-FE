@@ -5,6 +5,7 @@
   "source": "./index.html",
   "license": "ISC",
   "scripts": {
+    "prestart": "mkdir -p dist && msw init dist",
     "start": "parcel --port 8080",
     "build": "parcel build index.html --no-source-maps ",
     "check": "tsc --noEmit",
@@ -75,6 +76,9 @@
     "packageExports": true
   },
   "msw": {
-    "workerDirectory": "public"
+    "workerDirectory": [
+      "public",
+      "dist"
+    ]
   }
 }
