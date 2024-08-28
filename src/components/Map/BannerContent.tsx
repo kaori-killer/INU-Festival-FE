@@ -9,6 +9,10 @@ export const MAX_Y = window.innerHeight - 80; // 바텀시트가 최소로 내�
 export const BOTTOM_SHEET_HEIGHT = window.innerHeight - MIN_Y; // 바텀시트의 세로 길이
 
 const Wrapper = styled.div`
+  position: absolute ;
+  z-index: 300;
+  border-radius: 2%;
+
   touch-action: none;
   transition: transform 150ms ease-out;    
   max-width: 600px;
