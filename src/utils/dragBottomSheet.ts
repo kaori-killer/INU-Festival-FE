@@ -12,19 +12,8 @@ export default function dragBottomSheet() {
   document.body.style.cursor = 'grab';
 
   // 화면 기준으로 낮은 스냅 포인트와 중간 스냅 포인트 설정
-  const screenHeight = window.innerHeight;
-  let snapPoints: number[];
-
-  // 모바일 환경 감지
-  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-
-  if (isMobile) {
-    // 모바일 환경에서는 1/3과 2/3으로 설정
-    snapPoints = [screenHeight * 0.33, screenHeight * 0.67];
-  } else {
-    // 데스크톱 환경에서는 1/4과 1/2로 설정
-    snapPoints = [screenHeight * 0.25, screenHeight * 0.5, screenHeight];
-  }
+  const screenHeight = window.innerHeight + 80;
+  const snapPoints = [screenHeight * 0.25, screenHeight * 0.5, screenHeight * 0.85];
 
   const onDragStart = (clientY: number) => {
     isDragging = true;
@@ -72,6 +61,7 @@ export default function dragBottomSheet() {
     }
 
     // 가장 가까운 스냅 포인트로 height 설정
+    console.log(targetSnapPoint);
     bottomSheet.style.height = `${targetSnapPoint}px`;
   };
 
