@@ -13,7 +13,7 @@ export default function dragBottomSheet() {
 
   // 화면 기준으로 낮은 스냅 포인트와 중간 스냅 포인트 설정
   const screenHeight = window.innerHeight;
-  const snapPoints = [screenHeight * 0.3, screenHeight * 0.6, screenHeight * 0.98];
+  const snapPoints = [screenHeight * 0.35, screenHeight * 0.6, screenHeight * 0.98];
 
   const onDragStart = (clientY: number) => {
     isDragging = true;
