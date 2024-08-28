@@ -33,8 +33,24 @@ const booths = [
   },
 ];
 
+console.log('hello');
 const boothRankingHandler = [
-  http.get('https://13.125.142.74.nip.io/booth/ranking', () => HttpResponse.json({ booths })),
+  http.get('http://localhost:8080/booth/ranking', () => {
+    console.log('hello2');
+
+    return HttpResponse.json({ booths });
+  }),
 ];
 
 export default boothRankingHandler;
+
+// console.log('hello');
+// const boothRankingHandler = [
+//   http.get('https://13.125.142.74.nip.io/booth/ranking', () => {
+//     console.log('hello2');
+
+//     return HttpResponse.json({ booths });
+//   }),
+// ];
+
+// export default boothRankingHandler;
