@@ -9,6 +9,9 @@ import Booth from '../../types/Booth';
 import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
 
 const Container = styled.div`
+  z-index: 100;
+  position: absolute;
+  
   overflow-y: scroll;
   width: 100%;
   height: 100%;
