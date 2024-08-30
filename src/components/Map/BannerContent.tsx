@@ -1,28 +1,33 @@
 import { styled } from 'styled-components';
 
 import BoothList from './BoothList';
+
 import Booth from '../../types/Booth';
+
 import useFetchCategories from '../../hooks/useFetchCategories';
 
-export const MIN_Y = 90; // 바텀시트가 최대로 높이 올라갔을 때의 y 값
-export const MAX_Y = window.innerHeight - 80; // 바텀시트가 최소로 내려갔을 때의 y 값
-export const BOTTOM_SHEET_HEIGHT = window.innerHeight - MIN_Y; // 바텀시트의 세로 길이
+import dragBottomSheet from '../../utils/dragBottomSheet';
 
 const Wrapper = styled.div`
+  transition: height 0.3s ease;
+
+  position: absolute ;
+  z-index: 300;
+  border-radius: 3%;
+
   touch-action: none;
   transition: transform 150ms ease-out;    
   max-width: 600px;
   width: 100%;
   box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
   bottom: 0;
-  height: 55%;
+  height: ${window.innerHeight * 0.5}px;
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-left: 15px;
   padding-right: 15px;
-  cursor: grab;
   padding-top: 15px;
 
 `;
@@ -33,6 +38,16 @@ const BottomSheetContent = styled.div`
   height: 85%;
   position: relative;
   padding-bottom: 50px;
+`;
+
+const BottomSheetHandler = styled.div`
+    z-index: 100;
+    position: absolute;
+    height: 100%;
+  
+    width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const BottomSheetHeader = styled.div`
@@ -140,6 +155,8 @@ export default function BottomSheet({
   booths,
   setShowMarker,
 }: BottomSheetProps) {
+  dragBottomSheet();
+
   const categories = useFetchCategories();
   const { days, filters } = categories;
 
@@ -154,9 +171,11 @@ export default function BottomSheet({
   };
 
   return (
-    <Wrapper>
-      <BottomSheetHeader />
-      <BottomSheetContent>
+    <Wrapper className="bottom-sheet">
+      <BottomSheetHandler className="handle">
+        <BottomSheetHeader />
+      </BottomSheetHandler>
+      <BottomSheetContent className="content">
         <BottomSheetFilter>
           <Container>
             <p>요일</p>

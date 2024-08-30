@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -8,9 +8,10 @@ import Booth from '../../types/Booth';
 import useFetchBooths from '../../hooks/useFetchBooths';
 
 const Container = styled.div`
+    height: 100vh;
     max-width: 600px;
     width: 100%;
-    cursor: grab;
+    position: fixed;
 `;
 
 const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
