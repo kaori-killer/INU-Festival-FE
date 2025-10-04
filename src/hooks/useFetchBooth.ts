@@ -1,6 +1,6 @@
-import { useFetch } from 'usehooks-ts';
+import { useFetch } from "usehooks-ts";
 
-import Booth from '../types/Booth';
+import Booth from "../types/Booth";
 
 type BoothType = {
 booth: Booth;

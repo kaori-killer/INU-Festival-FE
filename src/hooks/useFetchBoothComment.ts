@@ -1,6 +1,6 @@
-import { useFetch } from 'usehooks-ts';
+import { useFetch } from "usehooks-ts";
 
-import BoothComments from '../types/BoothComment';
+import BoothComments from "../types/BoothComment";
 
 type BoothCommentType = {
     boothComments: BoothComments;

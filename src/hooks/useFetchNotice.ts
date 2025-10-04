@@ -1,6 +1,6 @@
-import { useFetch } from 'usehooks-ts';
+import { useFetch } from "usehooks-ts";
 
-import Notice from '../types/Notice';
+import Notice from "../types/Notice";
 
 const url = `${process.env.REACT_APP_URL}/notice`;
 

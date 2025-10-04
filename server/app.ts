@@ -9,14 +9,13 @@ app.use(cors());
 app.use(express.json());
 
 /* ---------------- Utils ---------------- */
-const now = () =>
-  new Date()
-    .toISOString()
-    .slice(0, 19)
-    .replace("T", " ");
+const now = () => new Date()
+  .toISOString()
+  .slice(0, 19)
+  .replace("T", " ");
 
 /* ---------------- Sentence 저장소 ---------------- */
-let shouts = [
+const shouts = [
   {
     id: 1,
     content: "오늘도 축제 화이팅!!",
@@ -106,7 +105,7 @@ const boothList = [
 
 /* ---------------- Booth 댓글 저장소 ---------------- */
 const boothCommentsMap: Record<string, any[]> = {
-  "1": [
+  1: [
     {
       id: "8",
       content: "기존 댓글",
@@ -167,8 +166,7 @@ app.post("/sentence", (req, res) => {
 app.delete("/sentence/:id", (req, res) => {
   const { id } = req.params;
   const idx = shouts.findIndex((s) => String(s.id) === String(id));
-  if (idx === -1)
-    return res.status(404).json({ message: "해당 id를 가진 문구가 없습니다." });
+  if (idx === -1) return res.status(404).json({ message: "해당 id를 가진 문구가 없습니다." });
 
   const loginUserId = "201901284"; // 더미 로그인
   if (String(shouts[idx].userId) !== loginUserId) {
@@ -204,8 +202,7 @@ app.get("/booth/all", (_req, res) => {
 app.get("/booth/:id", (req, res) => {
   const { id } = req.params;
   const booth = boothList.find((b) => String(b.id) === id);
-  if (!booth)
-    return res.status(404).json({ message: "해당 id를 가진 부스가 없습니다." });
+  if (!booth) return res.status(404).json({ message: "해당 id를 가진 부스가 없습니다." });
 
   const boothComments = boothCommentsMap[id] || [];
   res.json({
@@ -226,7 +223,9 @@ app.get("/booth/:bid/comment", (req, res) => {
 
 app.post("/booth/comment/:bid", (req, res) => {
   const { bid } = req.params;
-  const { id, content, emoji, userId } = req.body;
+  const {
+    id, content, emoji, userId,
+  } = req.body;
   const newComment = {
     id: id ?? randomUUID(),
     content,
@@ -244,20 +243,19 @@ app.post("/booth/comment/:bid", (req, res) => {
 app.put("/booth/:bid/comment/:cid", (req, res) => {
   const { bid, cid } = req.params;
   const { content, emoji } = req.body;
-  if (!boothCommentsMap[bid])
-    return res.status(404).json({ message: "해당 id를 가진 부스가 없습니다." });
+  if (!boothCommentsMap[bid]) return res.status(404).json({ message: "해당 id를 가진 부스가 없습니다." });
 
   const comment = boothCommentsMap[bid].find(
-    (c) => String(c.id) === String(cid)
+    (c) => String(c.id) === String(cid),
   );
-  if (!comment)
-    return res.status(404).json({ message: "해당 id를 가진 댓글이 없습니다." });
+  if (!comment) return res.status(404).json({ message: "해당 id를 가진 댓글이 없습니다." });
 
   const loginUserId = "201901284";
-  if (comment.userId !== loginUserId)
+  if (comment.userId !== loginUserId) {
     return res
       .status(403)
       .json({ message: "댓글 작성자만 수정할 수 있습니다." });
+  }
 
   comment.content = content ?? comment.content;
   comment.emoji = emoji ?? comment.emoji;
@@ -268,14 +266,12 @@ app.put("/booth/:bid/comment/:cid", (req, res) => {
 
 app.delete("/booth/:bid/comment/:cid", (req, res) => {
   const { bid, cid } = req.params;
-  if (!boothCommentsMap[bid])
-    return res.status(404).json({ message: "해당 id를 가진 부스가 없습니다." });
+  if (!boothCommentsMap[bid]) return res.status(404).json({ message: "해당 id를 가진 부스가 없습니다." });
 
   const idx = boothCommentsMap[bid].findIndex(
-    (c) => String(c.id) === String(cid)
+    (c) => String(c.id) === String(cid),
   );
-  if (idx === -1)
-    return res.status(404).json({ message: "해당 id를 가진 댓글이 없습니다." });
+  if (idx === -1) return res.status(404).json({ message: "해당 id를 가진 댓글이 없습니다." });
 
   const loginUserId = "201901284";
   if (boothCommentsMap[bid][idx].userId !== loginUserId) {
