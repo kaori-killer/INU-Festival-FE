@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
-import InfoWithIcon from '../MapDetail/InfoWithIcon';
-import Booth from '../../types/Booth';
+import InfoWithIcon from "../MapDetail/InfoWithIcon";
+import Booth from "../../types/Booth";
 
-import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
+import getCompactNumberFormatter from "../../utils/getCompactNumberFormat";
 
 const Container = styled.div`
   overflow-y: scroll;
@@ -191,7 +191,7 @@ export default function BoothList({
             >
               <BoothContainer>
                 <Image>
-                  <img src={boothImgs.length > 0 ? boothImgs[0].url : 'PinkBoothDefault.jpeg'} alt="boothImg.png" />
+                  <img src={boothImgs.length > 0 ? boothImgs[0].url : "PinkBoothDefault.jpeg"} alt="boothImg.png" />
                 </Image>
                 <BoothContent>
                   <div>{category}</div>

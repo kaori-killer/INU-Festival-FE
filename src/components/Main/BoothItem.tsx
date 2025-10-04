@@ -1,15 +1,15 @@
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Booth from '../../types/Booth';
+import Booth from "../../types/Booth";
 
 type BoothItemProps ={
   booth:Booth;
   index:number;
 }
 
-const Booth = styled.div`
+const BoothContainer = styled.div`
   display: flex;
   align-items: center;
   align-self: stretch;
@@ -67,14 +67,14 @@ const BoothList = styled.div`
 
 export default function BoothItem({ booth, index }:BoothItemProps) {
   const navigate = useNavigate();
-  const boothImgUrl = booth.boothImgs.length > 0 ? booth.boothImgs[0].url : '/PinkBoothDefault.jpeg';
+  const boothImgUrl = booth.boothImgs.length > 0 ? booth.boothImgs[0].url : "/PinkBoothDefault.jpeg";
 
   const handleClick = (id:string) => {
     navigate(`/map/${id}`);
   };
   return (
     <BoothList onClick={() => handleClick(booth.id)}>
-      <Booth>
+      <BoothContainer>
         <BoothDetail>
           <BoothRank src={`Rank${index + 1}.png`} alt="순위" />
           <BoothImg src={boothImgUrl} alt="부스이미지" />
@@ -83,7 +83,7 @@ export default function BoothItem({ booth, index }:BoothItemProps) {
             <div>{booth.name}</div>
           </BoothTitle>
         </BoothDetail>
-      </Booth>
+      </BoothContainer>
     </BoothList>
   );
 }

@@ -1,10 +1,10 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import useFetchPerforms from '../../hooks/useFetchPerforms';
+import useFetchPerforms from "../../hooks/useFetchPerforms";
 
-import Skeleton from '../Loading/Skeleton';
+import Skeleton from "../Loading/Skeleton";
 
 const Container = styled.div`
 height: 21rem;
@@ -35,7 +35,7 @@ export default function LineUp({
 }: LineUpProps) {
   const { data } = useFetchPerforms();
 
-  const lineups = data?.performs?.filter((perform) => perform.category === '연예인' && perform.day === 'day3') || [];
+  const lineups = data?.performs?.filter((perform) => perform.category === "연예인" && perform.day === "day3") || [];
 
   console.log(lineups);
   return (

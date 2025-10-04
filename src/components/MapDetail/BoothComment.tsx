@@ -1,10 +1,10 @@
-import { styled } from 'styled-components';
-import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router';
-import useFetchBoothComment from '../../hooks/useFetchBoothComment';
-import SendComment from '../../types/SendComment';
-import BoothComment from '../../types/BoothComment';
-import useUserStore from '../../hooks/useUserStore';
+import { styled } from "styled-components";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router";
+import useFetchBoothComment from "../../hooks/useFetchBoothComment";
+import SendComment from "../../types/SendComment";
+import BoothComment from "../../types/BoothComment";
+import useUserStore from "../../hooks/useUserStore";
 
 const CommentTop = styled.div`
   display: flex;
@@ -48,7 +48,7 @@ const NoCommentBox = styled.div`
 `;
 const TextBox = styled.div<{ $isMaximum: boolean }>`
   width: 100%;
-  border-bottom: 2px solid ${(props) => (props.$isMaximum ? '#F00' : '#0047C9')};
+  border-bottom: 2px solid ${(props) => (props.$isMaximum ? "#F00" : "#0047C9")};
   padding-bottom: 5px;
 
   span{
@@ -97,11 +97,11 @@ const TextWrapper = styled.div`
 `;
 
 const MAX_LENGTH = 50;
-const emojis = ['happy', 'funny', 'thrilling', 'excited'];
+const emojis = ["happy", "funny", "thrilling", "excited"];
 
 function CommentInput({ inputValue, handleInputChange, handleSendComment }) {
   const handleEnter = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') handleSendComment();
+    if (e.key === "Enter") handleSendComment();
   };
   return (
     <TextWrapper>
@@ -119,7 +119,7 @@ function CommentInput({ inputValue, handleInputChange, handleSendComment }) {
           {MAX_LENGTH}
         </span>
       </TextBox>
-      <button type="submit" onClick={handleSendComment} aria-label="부스댓글버튼" style={{ cursor: 'pointer' }}>
+      <button type="submit" onClick={handleSendComment} aria-label="부스댓글버튼" style={{ cursor: "pointer" }}>
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
           <circle cx="18" cy="18" r="18" fill="#0047C9" />
           <path
@@ -145,8 +145,8 @@ const BoothCommentList = ({ boothComments }) => boothComments.map((boothCommentD
   const createdAtDate = new Date(createdAt);
 
   const formattedDateTime = createdAtDate.toLocaleString(undefined, {
-    dateStyle: 'short',
-    timeStyle: 'short',
+    dateStyle: "short",
+    timeStyle: "short",
   });
 
   return (
@@ -161,11 +161,11 @@ const BoothCommentList = ({ boothComments }) => boothComments.map((boothCommentD
   );
 });
 
-export default function BoothComment(
+export default function BoothCommentComponent(
   { boothId, setCommentCount }: { boothId: string, setCommentCount: (value: number) => void; },
 ) {
-  const [inputValue, setInputValue] = useState('');
-  const accessToken = localStorage.getItem('accessToken');
+  const [inputValue, setInputValue] = useState("");
+  const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
   const location = useLocation();
   const boothComments: BoothComment[] = useFetchBoothComment(boothId);
@@ -177,9 +177,9 @@ export default function BoothComment(
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (accessToken === '""') {
-      alert('로그인 후에 메시지를 보낼 수 있습니다.');
-      navigate('/login', { state: { from: location.pathname } });
+    if (accessToken === "\"\"") {
+      alert("로그인 후에 메시지를 보낼 수 있습니다.");
+      navigate("/login", { state: { from: location.pathname } });
       return;
     }
     if (e.target.value.length > MAX_LENGTH) {
@@ -201,24 +201,24 @@ export default function BoothComment(
     setCommentCount((prev: number) => prev + 1);
 
     fetch(`${process.env.REACT_APP_URL}/booth/comment/${boothId}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(dataToSend),
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Failed to send comment');
+          throw new Error("Failed to send comment");
         }
         return response.json();
       })
       .then(() => {
-        setInputValue('');
+        setInputValue("");
         setNewBoothComment([...newBoothComment, dataToSend]);
       })
-      .catch((error) => console.error('Error:', error));
+      .catch((error) => console.error("Error:", error));
   };
 
   if (boothComments.length === 0) {
@@ -242,7 +242,7 @@ export default function BoothComment(
       {newBoothComment.map((boothCommentDetail, index) => {
         const { content, emoji } = boothCommentDetail;
         const nameLength = store.name.length;
-        const name = store.name.substring(0, nameLength - 3) + store.name.substring(nameLength - 3).replace(/./g, '*');
+        const name = store.name.substring(0, nameLength - 3) + store.name.substring(nameLength - 3).replace(/./g, "*");
         return (
           <CommentBox key={index}>
             <CommentTop>

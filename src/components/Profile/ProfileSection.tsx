@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-import useAccessToken from '../../hooks/useAccessToken';
-import UserInfo from './UserInfo';
-import { apiService } from '../../services/ApiService';
+import useAccessToken from "../../hooks/useAccessToken";
+import UserInfo from "./UserInfo";
+import { apiService } from "../../services/ApiService";
 
 const ProfileWrapper = styled.div`
   display:flex;
@@ -70,16 +70,16 @@ export default function ProfileSection() {
   const navigate = useNavigate();
 
   const handleClickLogout = async () => {
-    const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
+    const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
     if (confirmLogout) {
       await apiService.logout();
-      setAccessToken('');
-      navigate('/profile');
+      setAccessToken("");
+      navigate("/profile");
     }
   };
 
   const handleClickLogIn = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
