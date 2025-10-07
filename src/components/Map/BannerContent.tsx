@@ -136,7 +136,6 @@ export default function BottomSheet({
   booths,
   setShowMarker,
 }: BottomSheetProps) {
-  // 실제 API 데이터에 맞는 날짜와 카테고리
   const days = ["Day 1", "Day 2", "Day 3"];
   const filters = ["비주점", "주점", "플리마켓", "푸드트럭", "존"];
 

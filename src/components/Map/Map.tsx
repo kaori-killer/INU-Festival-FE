@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import styled from "styled-components";
 
@@ -12,8 +12,6 @@ const Container = styled.div`
   width: 100%;
   cursor: grab;
 `;
-
-const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
 
 export default function Map() {
   const booths = useFetchBooths();
@@ -32,34 +30,6 @@ export default function Map() {
     );
     return dayCount.length > 0 && booth.category === selectedCategory;
   });
-
-  // 디버깅용 로그
-  console.log("=== 디버깅 정보 ===");
-  console.log("전체 부스 수:", booths.length);
-  console.log("선택된 날짜:", selectedDay);
-  console.log("선택된 카테고리:", selectedCategory);
-  console.log("필터링된 부스 수:", filtered.length);
-  console.log("첫 번째 부스 데이터:", booths[0]);
-  console.log("첫 번째 부스의 boothDays:", booths[0]?.boothDays);
-  console.log("필터링된 부스들:", filtered);
-
-  let y = "";
-
-  useEffect(
-    () => () => {
-      localStorage.setItem("y", y);
-    },
-    []
-  );
-
-  document.addEventListener("scroll", () => {
-    y = String(document.documentElement.scrollTop);
-  });
-
-  useEffect(() => {
-    const newScrollY = Number(localStorage.getItem("y"));
-    window.scrollTo(0, newScrollY);
-  }, [booths]);
 
   return (
     <Container>

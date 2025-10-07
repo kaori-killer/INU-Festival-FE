@@ -175,7 +175,9 @@ export default function GuestBook() {
       .then(() => {
         socket.emit("message", dataToSend);
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => {
+        // 에러 처리 (필요시 사용자에게 알림)
+      });
 
     setInputValue("");
   };

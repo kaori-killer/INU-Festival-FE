@@ -169,7 +169,6 @@ export default function BoothList({
 
   const handleNavigate = (id: string, e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const isMark = (e.target as HTMLElement).parentNode.isEqualNode(markerButton.current as HTMLElement);
-    console.log(e.target);
     if (!isMark) {
       navigate(`/map/${id}`, { state: { date: selectedDay } });
     } else {

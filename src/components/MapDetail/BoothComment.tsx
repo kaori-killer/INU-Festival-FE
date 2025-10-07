@@ -229,7 +229,9 @@ export default function BoothCommentComponent({
         setInputValue("");
         setNewBoothComment([...newBoothComment, dataToSend]);
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => {
+        // 에러 처리 (필요시 사용자에게 알림)
+      });
   };
 
   if (boothComments.length === 0) {

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 
 import styled from "styled-components";
 
@@ -73,9 +73,9 @@ const Details = styled.div`
 
 export default function LoginForm() {
   const { setAccessToken } = useAccessToken();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [error, setError] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleChangeEmail = (value: string) => {
     setEmail(value);
