@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
@@ -13,8 +14,5 @@ export default defineConfig({
         secure: false,
       },
     },
-  },
-  define: {
-    "process.env.REACT_APP_URL": JSON.stringify("/legacy/api"),
   },
 });
