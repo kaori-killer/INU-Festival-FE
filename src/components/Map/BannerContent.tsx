@@ -136,9 +136,9 @@ export default function BottomSheet({
   booths,
   setShowMarker,
 }: BottomSheetProps) {
-  // 간단한 카테고리 데이터 (실제 API 연동 필요)
-  const days = ["day1", "day2", "day3"];
-  const filters = ["전체", "동아리", "총학생회", "행사", "개인공연", "연예인"];
+  // 실제 API 데이터에 맞는 날짜와 카테고리
+  const days = ["Day 1", "Day 2", "Day 3"];
+  const filters = ["비주점", "주점", "플리마켓", "푸드트럭", "존"];
 
   const handleSetFilterDay = (category: string) => {
     localStorage.setItem("day", category);
@@ -159,8 +159,8 @@ export default function BottomSheet({
             <p>요일</p>
             <DataFilterContainer>
               <FilterContainer>
-                {days
-                  && days.map((category: string) => (
+                {days &&
+                  days.map((category: string) => (
                     <DayFilterContainer key={category}>
                       <button
                         type="button"
@@ -178,8 +178,8 @@ export default function BottomSheet({
             <p>분류</p>
             <DataFilterContainer>
               <FilterContainer>
-                {filters
-                  && filters.map((category: string) => (
+                {filters &&
+                  filters.map((category: string) => (
                     <CategoryFilterContainer key={category}>
                       <button
                         type="button"

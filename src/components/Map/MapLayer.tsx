@@ -34,9 +34,10 @@ export default function MapLayer({
   const { kakao } = window;
 
   const [kakaoMap, setKakaoMap] = useState(null);
+  const [markers, setMarkers] = useState<[]>([]);
 
   useEffect(() => {
-    const map = Kakao;
+    const map = Kakao();
     setKakaoMap(map);
   }, []);
 
@@ -62,14 +63,14 @@ export default function MapLayer({
         const imageOption = { offset: new kakao.maps.Point(16, 34) };
 
         if (
-          (booth.category === "푸드트럭" || booth.category === "플리마켓")
-          && uniqueMarker
+          (booth.category === "푸드트럭" || booth.category === "플리마켓") &&
+          uniqueMarker
         ) {
           return;
         }
         if (
-          (booth.category === "푸드트럭" || booth.category === "플리마켓")
-          && !uniqueMarker
+          (booth.category === "푸드트럭" || booth.category === "플리마켓") &&
+          !uniqueMarker
         ) {
           uniqueMarker = true;
           moveLatLng([600, -280]);
@@ -78,7 +79,7 @@ export default function MapLayer({
         const markerImage = new kakao.maps.MarkerImage(
           `${booth.markerImage}.svg`,
           imageSize,
-          imageOption,
+          imageOption
         );
 
         const marker = new kakao.maps.Marker({
@@ -90,7 +91,8 @@ export default function MapLayer({
         marker.setMap(null);
         marker.setMap(kakaoMap);
         setMarkers((prevMarkers) => [...prevMarkers, marker]);
-        if (booth.category === "푸드트럭" || booth.category === "플리마켓") return;
+        if (booth.category === "푸드트럭" || booth.category === "플리마켓")
+          return;
         if (booth.category !== "푸드트럭" && booth.category !== "플리마켓") {
           moveLatLng([700, -400]);
         }

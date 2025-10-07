@@ -16,29 +16,32 @@ const Container = styled.div`
 const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
 
 export default function Map() {
-  const now = new Date();
-  const month = now.getDay();
-  const day = WEEKDAY[month] === "화"
-    || WEEKDAY[month] === "수"
-    || WEEKDAY[month] === "목"
-    ? WEEKDAY[month]
-    : "화";
   const booths = useFetchBooths();
   const [selectedDay, setSelectedDay] = useState<string>(
-    localStorage.getItem("day") || day,
+    localStorage.getItem("day") || "Day 1"
   );
   const [selectedCategory, setSelectedCategory] = useState<string>(
-    localStorage.getItem("category") || "비주점",
+    localStorage.getItem("category") || "비주점"
   );
   const [selectedBooth, setSelectedBooth] = useState<Booth[] | null>(null);
   const [showMarker, setShowMarker] = useState<Booth[] | null>(null);
 
   const filtered = booths.filter((booth) => {
     const dayCount = booth.boothDays.filter(
-      (boothDay) => boothDay.day === selectedDay,
+      (boothDay) => boothDay.day === selectedDay
     );
-    return dayCount.length && booth.category === selectedCategory;
+    return dayCount.length > 0 && booth.category === selectedCategory;
   });
+
+  // 디버깅용 로그
+  console.log("=== 디버깅 정보 ===");
+  console.log("전체 부스 수:", booths.length);
+  console.log("선택된 날짜:", selectedDay);
+  console.log("선택된 카테고리:", selectedCategory);
+  console.log("필터링된 부스 수:", filtered.length);
+  console.log("첫 번째 부스 데이터:", booths[0]);
+  console.log("첫 번째 부스의 boothDays:", booths[0]?.boothDays);
+  console.log("필터링된 부스들:", filtered);
 
   let y = "";
 
@@ -46,7 +49,7 @@ export default function Map() {
     () => () => {
       localStorage.setItem("y", y);
     },
-    [],
+    []
   );
 
   document.addEventListener("scroll", () => {
