@@ -97,7 +97,7 @@ export default function LoginForm() {
 
   return (
     <Container>
-      <img src="INUlogo.png" alt="INU logo" />
+      <img src="/INUlogo.png" alt="INU logo" />
       <form onSubmit={handleSubmit}>
         <TextBox
           label="E-mail"

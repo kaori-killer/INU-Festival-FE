@@ -62,7 +62,7 @@ export default function LineUp({ perView, spaceBetween }: LineUpProps) {
                   {lineup.img ? (
                     <img src={lineup.img} alt={lineup.img} />
                   ) : (
-                    <img src="LineupDefault.jpeg" alt="Default" />
+                    <img src="/LineupDefault.jpeg" alt="Default" />
                   )}
                 </Container>
               </SwiperSlide>

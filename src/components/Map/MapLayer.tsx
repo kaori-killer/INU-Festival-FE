@@ -76,8 +76,51 @@ export default function MapLayer({
           moveLatLng([600, -280]);
         }
 
+        // 카테고리별 마커 이미지 설정
+        const getMarkerImage = (category: string, name: string) => {
+          // 존(Zone) 카테고리는 이름으로 매칭
+          if (category === "존") {
+            if (name.includes("돗자리")) {
+              return "/markerOrange.svg";
+            }
+            if (name.includes("응원")) {
+              return "/markerNavy.svg";
+            }
+            if (name.includes("버스킹")) {
+              return "/markerSkyBlue.svg";
+            }
+            if (name.includes("팔찌") || name.includes("굿즈")) {
+              return "/markerRed.svg";
+            }
+            if (name.includes("클린") || name.includes("쓰레기")) {
+              return "/markerGreen.svg";
+            }
+            if (name.includes("취식")) {
+              return "/markerPurple.svg";
+            }
+            // 존 기본값
+            return "/marker.svg";
+          }
+
+          // 일반 카테고리별 매칭
+          switch (category) {
+            case "비주점":
+              return "/markerBlue.svg";
+            case "주점":
+              return "/markerYellow.svg";
+            case "푸드트럭":
+              return "/markerBlack.svg";
+            case "플리마켓":
+              return "/markerPink.svg";
+            default:
+              return "/marker.svg";
+          }
+        };
+
         const markerImage = new kakao.maps.MarkerImage(
-          `${booth.markerImage}.svg`,
+          booth.markerImage
+            ? `/${booth.markerImage}.svg`
+            : getMarkerImage(booth.category, booth.name),
           imageSize,
           imageOption
         );

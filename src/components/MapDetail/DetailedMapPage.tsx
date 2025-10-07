@@ -204,11 +204,15 @@ export default function DetailedMapPage() {
     if (screenWidth >= 600) {
       const newPosition = parseInt(translateImg, 10) - 600;
       const maxPosition = boothImgs.length * -600;
-      setTranslateImg(() => (newPosition <= maxPosition ? "0" : `${newPosition}px`));
+      setTranslateImg(() =>
+        newPosition <= maxPosition ? "0" : `${newPosition}px`
+      );
     } else {
       const newPosition = parseInt(translateImg, 10) - 100;
       const maxPosition = boothImgs.length * -100;
-      setTranslateImg(() => (newPosition <= maxPosition ? "0" : `${newPosition}vw`));
+      setTranslateImg(() =>
+        newPosition <= maxPosition ? "0" : `${newPosition}vw`
+      );
     }
   };
 
@@ -220,13 +224,15 @@ export default function DetailedMapPage() {
       const currentPosition = parseInt(translateImg, 10);
       const newPosition = currentPosition + 600;
       const maxPosition = (boothImgs.length - 1) * -600;
-      const updatedPosition = newPosition > 0 ? maxPosition : currentPosition + 600;
+      const updatedPosition =
+        newPosition > 0 ? maxPosition : currentPosition + 600;
       setTranslateImg(`${updatedPosition}px`);
     } else {
       const currentPosition = parseInt(translateImg, 10);
       const newPosition = currentPosition + 100;
       const maxPosition = (boothImgs.length - 1) * -100;
-      const updatedPosition = newPosition > 0 ? maxPosition : currentPosition + 100;
+      const updatedPosition =
+        newPosition > 0 ? maxPosition : currentPosition + 100;
       setTranslateImg(`${updatedPosition}vw`);
     }
   };
@@ -235,7 +241,7 @@ export default function DetailedMapPage() {
   const [toastText, setToastText] = useState("");
   const [likeCount, setLikeCount] = useState<number>(0);
   const [commentCount, setCommentCount] = useState<number>(
-    boothComments?.length || 0,
+    boothComments?.length || 0
   );
 
   useEffect(() => {
@@ -419,17 +425,14 @@ export default function DetailedMapPage() {
           className={showInstruction ? "notSelected" : "selected"}
           onClick={() => setShowInstruction(false)}
         >
-          댓글 (
-          {commentCount}
-          )
-          {" "}
+          댓글 ({commentCount}){" "}
         </button>
       </MapInfoBottom>
       {showInstruction ? (
         <BoothInstruction
           description={
-            description
-            || "아직 부스 소개가 없어요! \n 여러분의 댓글이 소중한 정보가 될 수 있습니다!"
+            description ||
+            "아직 부스 소개가 없어요! \n 여러분의 댓글이 소중한 정보가 될 수 있습니다!"
           }
         />
       ) : (

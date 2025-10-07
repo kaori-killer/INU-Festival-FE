@@ -138,19 +138,19 @@ export default function BoothRanking() {
           <LineDiv />
           {data === undefined
             ? new Array(5)
-              .fill(1)
-              .map((_, i) => <SkeletonBoothRanking key={i} />)
+                .fill(1)
+                .map((_, i) => <SkeletonBoothRanking key={i} />)
             : data?.booths.map((booth, index) => (
-              <BoothRank key={booth.id}>
-                <BoothItem booth={booth} index={index} />
-                <BoothHeartContainer>
-                  <BoothHeart onClick={() => handleClick(booth.id)}>
-                    <img src="Heart.svg" alt="좋아요 하트" />
-                    <div>{formatter.format(booth.liked)}</div>
-                  </BoothHeart>
-                </BoothHeartContainer>
-              </BoothRank>
-            ))}
+                <BoothRank key={booth.id}>
+                  <BoothItem booth={booth} index={index} />
+                  <BoothHeartContainer>
+                    <BoothHeart onClick={() => handleClick(booth.id)}>
+                      <img src="/Heart.svg" alt="좋아요 하트" />
+                      <div>{formatter.format(booth.liked)}</div>
+                    </BoothHeart>
+                  </BoothHeartContainer>
+                </BoothRank>
+              ))}
         </BoothWrapper>
       </BoothRankingContainer>
     </>

@@ -47,7 +47,7 @@ export default function Lineup({ lineup }: LineupProps) {
   return (
     <Container>
       {lineup.img === "temp.img" ? (
-        <img src="LineupDefault.jpeg" alt="Default" />
+        <img src="/LineupDefault.jpeg" alt="Default" />
       ) : (
         <img src={lineup.img} alt={lineup.img} />
       )}

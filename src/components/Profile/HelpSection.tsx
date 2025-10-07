@@ -135,21 +135,21 @@ export default function HelpSection() {
     <HelpWrapper>
       <HelpTitle>지원</HelpTitle>
       <HelpElement onClick={handleCopyHelp}>
-        <HelpIcon src="Contact.svg" />
+        <HelpIcon src="/Contact.svg" />
         <Helplink>문의하기</Helplink>
       </HelpElement>
       <HelpElement onClick={handleCopyReview}>
-        <HelpIcon src="review.svg" />
+        <HelpIcon src="/review.svg" />
         <Helplink>리뷰 남기기</Helplink>
       </HelpElement>
       <HelpElement onClick={() => handleShare()}>
-        <HelpIcon src="Link.svg" />
+        <HelpIcon src="/Link.svg" />
         <Helplink>링크 공유하기</Helplink>
         <CopyTextArea id="copyTextArea" readOnly value="httplocalhost:8080/" />
         {toast && <Toast setToast={setToast} text={toastText} />}
       </HelpElement>
       <HelpElement onClick={() => handleFortune()}>
-        <HelpIcon src="clover.svg" />
+        <HelpIcon src="/clover.svg" />
         <Helplink>오늘의 운세</Helplink>
         {toast && <Toast setToast={setToast} text={toastText} />}
       </HelpElement>
