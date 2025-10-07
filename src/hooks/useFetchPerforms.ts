@@ -2,7 +2,7 @@ import { useFetch } from "usehooks-ts";
 
 import Perform from "../types/Perform";
 
-const url = `${process.env.REACT_APP_URL}/timetable`;
+const url = `${import.meta.env.VITE_API_URL}/timetable`;
 
 type Performs = {
   perform: Perform[];

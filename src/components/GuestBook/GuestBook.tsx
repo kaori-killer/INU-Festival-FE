@@ -104,7 +104,7 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `;
 
-const ServerURL = process.env.REACT_APP_URL;
+const ServerURL = import.meta.env.VITE_API_URL;
 const MAX_LENGTH = 16;
 
 export default function GuestBook() {
@@ -163,7 +163,7 @@ export default function GuestBook() {
       emoji,
     };
 
-    fetch(`${process.env.REACT_APP_URL}/sentence`, {
+    fetch(`${import.meta.env.VITE_API_URL}/sentence`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -229,9 +229,7 @@ export default function GuestBook() {
               spellCheck="false"
             />
             <span>
-              {inputValue.length}
-              /
-              {MAX_LENGTH}
+              {inputValue.length}/{MAX_LENGTH}
             </span>
           </TextBox>
           <SubmitButton
